@@ -25,11 +25,17 @@ export default function Domain() {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const handleSubmit = (event) => {
+    console.log("Name: ", name);
+    if(name === '' || email === '' || offer === '') {
+      alert('Please fill all the fields')
+      return
+    }else{
     event.preventDefault();
     setName("");
     setEmail("");
     setOffer("");
     window.location = 'mailto:sales@popcorn.com.bd?subject=Domain Offer&body=Name: '+name+'%0D%0AEmail: '+email+'%0D%0AOffer: '+offer
+    }
   };
   return (
     <>
