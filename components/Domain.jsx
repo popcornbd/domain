@@ -33,7 +33,7 @@ export default function Domain() {
   };
   return (
     <>
-      <Box sx={{bgcolor:'background.default', color:'text-primary', height:'100vh'}}>
+      <Box sx={{bgcolor:'background.default', color:'text.primary', height:{lg:'100vh', xs:'100%'}}}>
         <IconButton onClick={colorMode.toggleColorMode} color="inherit">
           {theme.palette.mode === "dark" ? (
             <Brightness7Icon sx={{color:'text.primary'}}/>
@@ -41,12 +41,12 @@ export default function Domain() {
             <Brightness4Icon />
           )}
         </IconButton>
-        <Container sx={{ mt: "10em" }}>
+        <Container sx={{ mt: {lg:"10em", xs:'2em'} }}>
           <Grid container>
-            <Grid item xs={8}>
+            <Grid item lg={8} xs={12}>
               <Box>
                 <Typography
-                  variant="h4"
+                  variant="h3"
                   sx={{
                     bgcolor: `${theme.palette.mode === "dark" ? "#ffa726" : "#d32f2f"}`,
                     display: "inline",
@@ -64,11 +64,11 @@ export default function Domain() {
                 >
                   MyDomain.com
                 </Typography>
-                <Typography variant="h6" sx={{ display: "inline", color:'text.primary'}}>
+                <Typography variant="h5" sx={{ display: "inline", color:'text.primary'}}>
                   Estimated value
                 </Typography>
                 <Typography
-                  variant="h6"
+                  variant="h5"
                   sx={{
                     bgcolor: "#388e3c",
                     display: "inline",
@@ -89,7 +89,9 @@ export default function Domain() {
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    width: "80%",
+                    width: {lg:"80%", xs:'100%'},
+                    flexWrap: "wrap",
+                    gap: {lg:"0", xs:'1em'},
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -113,8 +115,8 @@ export default function Domain() {
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ border: `${theme.palette.mode === 'dark' ? 'none' : "1px solid lightgray"}`, p: "1em 1.2em", bgcolor:`${theme.palette.mode === 'dark' ? '#55536e3b' : 'none'}` }}>
+            <Grid item lg={4} xs={12}>
+              <Box sx={{ border: `${theme.palette.mode === 'dark' ? 'none' : "1px solid lightgray"}`, p: "1em 1.2em", bgcolor:`${theme.palette.mode === 'dark' ? '#55536e3b' : 'none'}`, my:{lg:'0', xs:'3em'}, }}>
                 <Box sx={{ textAlign: "center", mb: "1.5em" }}>
                   <Typography variant="h6" sx={{ fontWeight: "bold",color:'text.primary' }}>
                     Make Your Offer
@@ -175,7 +177,7 @@ export default function Domain() {
                   <Button
                     variant="contained"
                     fullWidth
-                    sx={{ bgcolor: `${theme.palette.mode === "dark" ? "#ffa726" : "#d32f2f"}` }}
+                    sx={{ bgcolor: `${theme.palette.mode === "dark" ? "#ffa726" : null}`, textTransform:'capitalize' }}
                     onClick={handleSubmit}
                   >
                     Send my offer
