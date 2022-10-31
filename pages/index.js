@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Domain from "../components/Domain";
 
 
+
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 export default function Home() {
   const [mode, setMode] = useState("light");

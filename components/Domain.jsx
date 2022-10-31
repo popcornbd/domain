@@ -4,6 +4,7 @@ import {
   Grid,
   IconButton,
   InputAdornment,
+  Link,
   TextField,
   Typography,
   useTheme,
@@ -38,8 +39,8 @@ export default function Domain() {
     }
   };
   return (
-    <>
-      <Box sx={{bgcolor:'background.default', color:'text.primary', height:{lg:'100vh', xs:'100%'}}}>
+    <div style={{}}>
+      <Box sx={{bgcolor:'background.default', color:'text.primary', height:{lg:'93vh', xs:'100%'}}}>
         <IconButton onClick={colorMode.toggleColorMode} color="inherit">
           {theme.palette.mode === "dark" ? (
             <Brightness7Icon sx={{color:'text.primary'}}/>
@@ -47,9 +48,9 @@ export default function Domain() {
             <Brightness4Icon />
           )}
         </IconButton>
-        <Container sx={{ mt: {lg:"10em", xs:'2em'} }}>
-          <Grid container>
-            <Grid item lg={8} xs={12}>
+        <Container sx={{height:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+          <Grid container sx={{alignItems:'center'}}>
+            <Grid item lg={8} xs={12} >
               <Box>
                 <Typography
                   variant="h3"
@@ -103,26 +104,26 @@ export default function Domain() {
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <CallIcon sx={{color:'text.primary'}}/>
                     <Typography variant="body1" sx={{ display: "inline",color:'text.primary' }}>
-                      (+91) 11-2142-4568
+                      <Link href='tel:(+91) 11-2142-4568' underline='none' color="text.light">(+91) 11-2142-4568</Link>
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <MailIcon sx={{color:'text.primary'}}/>
                     <Typography variant="body1" sx={{ display: "inline",color:'text.primary' }}>
-                      info@mydomain.com
+                      <Link href="mailto:info@mydomain.com" underline='none' color="text.light">info@mydomain.com</Link>
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <LanguageIcon sx={{color:'text.primary'}}/>
                     <Typography variant="body1" sx={{ display: "inline",color:'text.primary' }}>
-                      More Domain
+                      <Link underline='none' color="text.light">More Domain</Link>
                     </Typography>
                   </Box>
                 </Box>
               </Box>
             </Grid>
             <Grid item lg={4} xs={12}>
-              <Box sx={{ border: `${theme.palette.mode === 'dark' ? 'none' : "1px solid lightgray"}`, p: "1em 1.2em", bgcolor:`${theme.palette.mode === 'dark' ? '#55536e3b' : 'none'}`, my:{lg:'0', xs:'3em'}, }}>
+              <Box sx={{ border: `${theme.palette.mode === 'dark' ? 'none' : "1px solid lightgray"}`, p: "1em 1.2em", bgcolor:`${theme.palette.mode === 'dark' ? '#55536e3b' : '#fff'}`, my:{lg:'0', xs:'3em'},height:'450px', display:'flex', flexDirection:'column', justifyContent:'center', boxShadow:'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px' }}>
                 <Box sx={{ textAlign: "center", mb: "1.5em" }}>
                   <Typography variant="h6" sx={{ fontWeight: "bold",color:'text.primary' }}>
                     Make Your Offer
@@ -140,7 +141,7 @@ export default function Domain() {
                 >
                   <TextField
                     fullWidth
-                    size="small"
+                    size="large"
                     placeholder="Enter Your Name"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
@@ -155,7 +156,7 @@ export default function Domain() {
                   <TextField
                     fullWidth
                     placeholder="Enter Your Email"
-                    size="small"
+                    size="large"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     InputProps={{
@@ -169,7 +170,7 @@ export default function Domain() {
                   <TextField
                     fullWidth
                     placeholder="Enter Your Offer"
-                    size="small"
+                    size="large"
                     onChange={(e) => setOffer(e.target.value)}
                     value={offer}
                     InputProps={{
@@ -183,6 +184,7 @@ export default function Domain() {
                   <Button
                     variant="contained"
                     fullWidth
+                    size="large"
                     sx={{ bgcolor: `${theme.palette.mode === "dark" ? "#ffa726" : null}`, textTransform:'capitalize' }}
                     onClick={handleSubmit}
                   >
@@ -194,6 +196,6 @@ export default function Domain() {
           </Grid>
         </Container>
       </Box>
-    </>
+    </div>
   );
 }
