@@ -8,7 +8,8 @@ import {
   Link,
   TextField,
   Typography,
-  useTheme, Snackbar,
+  useTheme,
+  Snackbar,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import PersonIcon from "@mui/icons-material/Person";
@@ -20,7 +21,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { ColorModeContext } from "../pages";
 import emailjs from "@emailjs/browser";
-import { Close } from '@mui/icons-material'
+import { Close } from "@mui/icons-material";
 export default function Domain() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -35,30 +36,40 @@ export default function Domain() {
     }
     setOpen(false);
   };
+  console.log(form)
   const handleSubmit = (event) => {
     if (name === "" || email === "" || offer === "") {
       alert("Please fill all the fields");
-    }
-    else{event.preventDefault();
-    setName("");
-    setEmail("");
-    setOffer("");
-    setOpen(true);
-    emailjs.sendForm(
-          "service_l2jfd8d",
+      return
+    } else {
+      event.preventDefault();
+      setName("");
+      setEmail("");
+      setOffer("");
+      setOpen(true);
+      var templateParams = {
+        name: name,
+        email: email,
+        offer: offer
+    };
+    console.log(templateParams)
+      emailjs.sendForm(
+          "gmail",
           "template_zr3h6l8",
           form.current,
-          "TaTGlAfHC6tC03lO_"
+          "TaTGlAfHC6tC03lO_",
+          templateParams
         )
         .then(
           (result) => {
             console.log(result.text);
-            console.log('success')
+            console.log("success");
           },
           (error) => {
             console.log(error.text);
           }
-        );}
+        );
+    }
   };
   return (
     <div style={{}}>
@@ -230,12 +241,13 @@ export default function Domain() {
                     your offer
                   </Typography>
                 </Box>
-                  <form ref={form} onSubmit={handleSubmit} style={{gap: "1em", display: "flex", flexDirection: "column" }}>
+                <form ref={form} onSubmit={handleSubmit} style={{gap: "1em", display: "flex", flexDirection: "column" }}>
                   <TextField
                     fullWidth
                     size="large"
                     placeholder="Enter Your Name"
                     type='text'
+                    name='user_name'
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                     InputProps={{
@@ -251,6 +263,7 @@ export default function Domain() {
                     placeholder="Enter Your Email"
                     size="large"
                     type='email'
+                    name='user_email'
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     InputProps={{
@@ -266,6 +279,7 @@ export default function Domain() {
                     placeholder="Enter Your Offer"
                     size="large"
                     type="number"
+                    name='user_offer'
                     onChange={(e) => setOffer(e.target.value)}
                     value={offer}
                     InputProps={{
@@ -287,25 +301,24 @@ export default function Domain() {
                       }`,
                       textTransform: "capitalize",
                     }}
-                    onClick={handleSubmit}
                   >
                     Send my offer
                   </Button>
                   </form>
-                  <Snackbar
-                    open={open}
-                    autoHideDuration={3500}
+                <Snackbar
+                  open={open}
+                  autoHideDuration={3500}
+                  onClose={handleClose}
+                >
+                  <Alert
                     onClose={handleClose}
+                    severity="success"
+                    sx={{ width: "100%" }}
                   >
-                    <Alert
-                      onClose={handleClose}
-                      severity="success"
-                      sx={{ width: "100%" }}
-                    >
-                      Successfully Send Your Offer
-                    </Alert>
-                  </Snackbar>
-                </Box>
+                    Successfully Send Your Offer
+                  </Alert>
+                </Snackbar>
+              </Box>
             </Grid>
           </Grid>
         </Container>
